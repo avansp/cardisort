@@ -25,7 +25,8 @@ def main(args):
 
     M = 256
     N = 256
-    cardisort_model = tfk.models.load_model('cardisort_model.ckpt')
+    # cardisort_model = tfk.models.load_model('cardisort_model.ckpt')
+    cardisort_model = tfk.models.load_model('../cardisort_model.ckpt')
     pickle_in = open("seq_categories.pickle","rb")
     seq_categories = pickle.load(pickle_in)
     pickle_in = open("plane_categories.pickle","rb")
