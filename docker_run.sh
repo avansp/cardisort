@@ -39,7 +39,7 @@ do
     -k | --keep) OPT_RM="";   shift   ;;
     -n | --name) IMAGE_NAME="$2"; shift 2 ;;
     -h | --help) usage ;;
-    -d | --data) DATA="-v$2:/app/data";  shift 2 ;;
+    -d | --data) DATA="-v$(realpath $2):/app/data";  shift 2 ;;
     --) shift; break ;;
     *) echo "Unexpected option: $1."
        usage ;;
@@ -55,3 +55,4 @@ fi
 
 #set -x
 eval $ACTION
+#echo $ACTION
