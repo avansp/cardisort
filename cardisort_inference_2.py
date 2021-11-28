@@ -39,8 +39,8 @@ if __name__ == "__main__":
         img_dict = get_inference_dict(ser, args.M, args.N)
 
         # count series
-        for key in img_dict[0]:
-            out = cardisort_model(img_dict[0][key][np.newaxis, ...])
+        for key in img_dict:
+            out = cardisort_model(img_dict[key][np.newaxis, ...])
 
             s = np.argmax(out[0].numpy())
             p = np.argmax(out[1].numpy())
