@@ -24,7 +24,9 @@ class CMRSorter:
 
             # read the dicom file
             try:
-                dcm = pydicom.read_file(f)
+                dcm = pydicom.read_file(f, force=True)
+                if "TransferSyntaxUID" not in dcm.file_meta:
+                    continue
             except:
                 continue
 
