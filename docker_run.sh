@@ -19,6 +19,7 @@ usage()
   echo -e "  -k, --keep            Keep the container while exit. Use 'docker container start -i' to run it again."
   echo -e "  -n, --name IMAGE_NAME Provide the name of the image. Default is 'cardisort'."
   echo -e "  -d, --data PATH       Provide additional absolute path to map into /app/data in the container."
+  echo -e "  -x, --no-gpu          Do not use GPUs."
   echo -e "  -h, --help            To show this information."
   echo
   echo "Author: Avan Suinesiaputra - KCL 2021"
@@ -26,7 +27,7 @@ usage()
   exit 2
 }
 
-PARSED_ARGUMENTS=$(getopt -o khn:d: --long keep,help,name:,data: -- "$@")
+PARSED_ARGUMENTS=$(getopt -o xkhn:d: --long keep,help,name:,data: -- "$@")
 VALID_ARGUMENTS=$?
 if [ "$VALID_ARGUMENTS" != "0" ]; then
   usage
@@ -37,6 +38,7 @@ while :
 do
   case "$1" in
     -k | --keep) OPT_RM="";   shift   ;;
+    -x | --no-gpu) GPUS="";   shift   ;;
     -n | --name) IMAGE_NAME="$2"; shift 2 ;;
     -h | --help) usage ;;
     -d | --data) DATA="-v$(realpath $2):/app/data";  shift 2 ;;
